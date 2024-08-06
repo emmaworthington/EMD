@@ -38,7 +38,7 @@ xlim([0 stopTime_plot])
 ax = gca;
 ax.FontSize = 16; 
 
-saveas(gcf,strcat(save_path,'inputData.png'));
+% saveas(gcf,strcat(save_path,'inputData.png'));
 
 % -------------------------------------------------------------------------------------------
 % apply EMD
@@ -73,4 +73,4 @@ xlim([0 stopTime_plot])
 ax = gca;
 ax.FontSize = 12; 
     
-saveas(gcf,strcat(save_path,'imfs_emd.png'));
+% saveas(gcf,strcat(save_path,'imfs_emd.png'));

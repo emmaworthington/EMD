@@ -8,8 +8,8 @@ clear
 close all
 clc
 
-addpath(strcat(pwd,'\functions\')) % add path where you saved to memd function 
-save_path = strcat(pwd,'\figs\'); % path where you want to save your figures
+addpath('/Users/emmwor/pCloud Drive/MATLAB/memd_version_2/') % add path where you saved to memd function 
+save_path = strcat(pwd, '\figs\'); % path where you want to save your figures
 
 % -------------------------------------------------------------------------------------------
 % initialize the synthetic data
@@ -29,7 +29,7 @@ F_3 = 5;                 % Hz
 
 % amplitudes of all signals
 A_1 = 4;
-A_2 = 5;
+A_2 = 5;`
 A_3 = 3;
 
 % data, i.e., all three signals 
@@ -101,7 +101,7 @@ legend('$g_1(t)$','$g_2(t)$','$g_3(t)$','interpreter','latex',...
     'location','southoutside','orientation','horizontal')
 legend boxoff
 
-saveas(gcf,strcat(save_path,'inputData.png'));
+% saveas(gcf,strcat(save_path,'inputData.png'));
 
 % -------------------------------------------------------------------------------------------
 % apply MEMD
@@ -172,7 +172,7 @@ for i =1:size(imfs,1) % loop through all variates
     ax.FontSize = 12; 
 end
 
-saveas(gcf,strcat(save_path,'imfs_memd.png'));
+% saveas(gcf,strcat(save_path,'imfs_memd.png'));
 
 % -------------------------------------------------------------------------------------------
 % apply univariate EMD
@@ -195,7 +195,7 @@ tiledlayout(size(imfs,1),4);
 i = 1;
 for j = 1:3 % loop through IMFs
     nexttile
-    plot(t,squeeze(imfs_1(:,j)),'color',blue,'LineWidth',1.5)
+    plot(t,squeeze(imfs_1(j, :)),'color',blue,'LineWidth',1.5)
     title(strcat(num2str(j),'. IMF'),'interpreter','latex')
     if j == 1
         ylabel('$g_1(t)$','interpreter','latex');
@@ -208,7 +208,7 @@ for j = 1:3 % loop through IMFs
 end
 
 nexttile
-dd = squeeze(sum(imfs_1(:,j+1:end),2));
+dd = squeeze(sum(imfs_1(j+1:end, :), 1));
 plot(t,dd,'color',blue,'LineWidth',1.5)
 title(strcat('res'),'interpreter','latex')
 xlabel('$t$','interpreter','latex')   
@@ -221,7 +221,7 @@ ax.FontSize = 12;
 i = 2;
 for j = 1:3 
     nexttile
-    plot(t,squeeze(imfs_2(:,j)),'color',orange,'LineWidth',1.5)
+    plot(t,squeeze(imfs_2(j, :)),'color',orange,'LineWidth',1.5)
     if j == 1
         ylabel('$g_2(t)$','interpreter','latex');
     end  
@@ -233,7 +233,7 @@ for j = 1:3
 end
 
 nexttile
-dd = squeeze(sum(imfs_2(:,j+1:end),2));
+dd = squeeze(sum(imfs_2(j+1:end, :), 1));
 plot(t,dd,'color',orange,'LineWidth',1.5)
 xlabel('$t$','interpreter','latex')   
 xlim([0 stopTime_plot])
@@ -245,7 +245,7 @@ ax.FontSize = 12;
 i = 3;
 for j = 1:3 
     nexttile
-    plot(t,squeeze(imfs_3(:,j)),'color',green,'LineWidth',1.5)
+    plot(t,squeeze(imfs_3(j, :)),'color',green,'LineWidth',1.5)
     if j == 1
         ylabel('$g_3(t)$','interpreter','latex');
     end  
@@ -257,7 +257,7 @@ for j = 1:3
 end
 
 nexttile
-dd = squeeze(sum(imfs_3(:,j+1:end),2));
+dd = squeeze(sum(imfs_3(j+1:end, :), 1));
 plot(t,dd,'color',green,'LineWidth',1.5)
 xlabel('$t$','interpreter','latex')   
 xlim([0 stopTime_plot])
@@ -265,4 +265,4 @@ ylim([mean(dd)-2.01 mean(dd)+2.01])
 ax = gca;
 ax.FontSize = 12; 
 
-saveas(gcf,strcat(save_path,'imfs_uniemd.png'));
+% saveas(gcf,strcat(save_path,'imfs_uniemd.png'));
